@@ -15,8 +15,26 @@ dt = datetime.datetime
 
 def get_countdown(from_date, to_date):
     rdelta = relativedelta(to_date, from_date)
-    result_list = [rdelta.years, rdelta.months, rdelta.days, rdelta.hours, rdelta.minutes, rdelta.seconds]
-    print(f"[SUCCESS] Difference: {rdelta.years} years {rdelta.months} months {rdelta.days} days and {rdelta.hours} hours, {rdelta.minutes} minutes, {rdelta.seconds} seconds")
+    years_dif = rdelta.years
+    months_dif = rdelta.months
+    days_dif = rdelta.days
+    hours_dif = rdelta.hours
+    minutes_dif = rdelta.minutes
+    seconds_dif = rdelta.seconds
+    if len(str(years_dif)) == 1:
+        years_dif = "0" + str(years_dif)
+    if len(str(months_dif)) == 1:
+        months_dif = "0" + str(months_dif)
+    if len(str(days_dif)) == 1:
+        days_dif = "0" + str(days_dif)
+    if len(str(hours_dif)) == 1:
+        hours_dif = "0" + str(hours_dif)
+    if len(str(minutes_dif)) == 1:
+        minutes_dif = "0" + str(minutes_dif)
+    if len(str(seconds_dif)) == 1:
+        seconds_dif = "0" + str(seconds_dif)
+    result_list = [years_dif, months_dif, days_dif, hours_dif, minutes_dif, seconds_dif]
+    print(f"[SUCCESS] Difference: {years_dif} years {months_dif} months {days_dif} days and {hours_dif} hours, {minutes_dif} minutes, {seconds_dif} seconds")
     show_result(result_list)
 
 def convert_str_to_date(from_string,to_string):
@@ -41,6 +59,7 @@ def convert_str_to_date(from_string,to_string):
         calculation_error.configure(background="#2B2B2B")
         calculation_error_label = customtkinter.CTkLabel(calculation_error, text="You did not entered at least one of the dates.", text_font=("Calibri Bold", 12))
         calculation_error_label.pack(side="top", fill="both", expand=True, padx=10, pady=10)
+        print(e)
     # return from_time, to_time
 
 def close_program():
@@ -109,48 +128,48 @@ exit_button.pack(ipadx=5, ipady=5, expand=True)
 exit_button.place(x=690, y=450)
 
 def show_result(result_dict):
-    years_count_label = customtkinter.CTkLabel(master=window, text=f"{result_dict[0]}", text_font=("Calibri Bold", 100), bg_color="#2B2B2B")
+    years_count_label = customtkinter.CTkLabel(master=window, text=f"{str(result_dict[0])}", text_font=("Calibri Bold", 100), bg_color="#2B2B2B")
     years_count_label.configure(text_color="#FFFFFF")
-    years_count_label.place(x=105, y=180)
+    years_count_label.place(x=60, y=180)
     years_label = customtkinter.CTkLabel(master=window, text=f"year(s)", text_font=("Calibri Bold", 15), width=20, bg_color="#2B2B2B")
     years_label.configure(text_color="#FFFFFF")
-    years_label.place(x=210, y=284)
+    years_label.place(x=205, y=284)
 
     months_count_label = customtkinter.CTkLabel(master=window, text=f"{result_dict[1]}", text_font=("Calibri Bold", 100), width=20)
     months_count_label.configure(text_color="#FFFFFF")
     months_count_label.place(x=300, y=180)
     months_label = customtkinter.CTkLabel(master=window, text=f"month(s)", text_font=("Calibri Bold", 15), width=20)
     months_label.configure(text_color="#FFFFFF")
-    months_label.place(x=370, y=284)
+    months_label.place(x=445, y=284)
 
     days_count_label = customtkinter.CTkLabel(master=window, text=f"{result_dict[2]}", text_font=("Calibri Bold", 100), width=20)
     days_count_label.configure(text_color="#FFFFFF")
-    days_count_label.place(x=475, y=180)
+    days_count_label.place(x=560, y=180)
     days_label = customtkinter.CTkLabel(master=window, text=f"day(s)", text_font=("Calibri Bold", 15), width=20)
     days_label.configure(text_color="#FFFFFF")
-    days_label.place(x=560, y=284)
+    days_label.place(x=705, y=284)
 
     hours_count_label = customtkinter.CTkLabel(master=window, text=f"{result_dict[3]}", text_font=("Calibri Bold", 15), width=20)
     hours_count_label.configure(text_color="#FFFFFF")
-    hours_count_label.place(x=220, y=320)
+    hours_count_label.place(x=227, y=320)
     hours_label = customtkinter.CTkLabel(master=window, text=f"hour(s)", text_font=("Calibri Bold", 15), width=20)
     hours_label.configure(text_color="#FFFFFF")
-    hours_label.place(x=245, y=320)
+    hours_label.place(x=252, y=320)
 
     minutes_count_label = customtkinter.CTkLabel(master=window, text=f"{result_dict[4]}", text_font=("Calibri Bold", 15), width=20)
     minutes_count_label.configure(text_color="#FFFFFF")
-    minutes_count_label.place(x=315, y=320)
+    minutes_count_label.place(x=322, y=320)
     minutes_label = customtkinter.CTkLabel(master=window, text=f"minute(s)", text_font=("Calibri Bold", 15), width=20)
     minutes_label.configure(text_color="#FFFFFF")
-    minutes_label.place(x=333, y=320)
+    minutes_label.place(x=347, y=320)
 
 
     seconds_count_label = customtkinter.CTkLabel(master=window, text=f"{result_dict[5]}", text_font=("Calibri Bold", 15), width=20)
     seconds_count_label.configure(text_color="#FFFFFF")
-    seconds_count_label.place(x=425, y=320)
+    seconds_count_label.place(x=437, y=320)
     seconds_label = customtkinter.CTkLabel(master=window, text=f"second(s)", text_font=("Calibri Bold", 15), width=20)
     seconds_label.configure(text_color="#FFFFFF")
-    seconds_label.place(x=450, y=320)
+    seconds_label.place(x=462, y=320)
 
 window.resizable(False,False)
 window.mainloop()
